@@ -4,10 +4,21 @@ import logo from './logo.svg';
 // custom components
 import GuardedRoute from './components/GuardedRoute';
 
+// redux
+import { useDispatch } from 'react-redux';
+import { getLocation } from './redux/actions/locationActions';
+
 // styles
 import './App.css';
+import React from 'react';
 
 function App() {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(getLocation());
+  });
+
   return (
     // TODO: If you're going to use App as a component switch the use the code below
     // <Router>
@@ -19,7 +30,7 @@ function App() {
     //     redirectTo="/"
     //   />
     // </Router>
-    
+
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
