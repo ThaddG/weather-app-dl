@@ -8,7 +8,7 @@ const initialState = {
       temp: 0,
     },
   },
-  fiveDay: {},
+  fiveDay: [],
 };
 
 export const temperatureReducer = (state = initialState, action) => {
@@ -18,6 +18,8 @@ export const temperatureReducer = (state = initialState, action) => {
         ...state,
         current: { ...action.payload },
       };
+    case 'GET_FIVE_DAY_TEMPERATURE':
+      return { ...state, fiveDay: action.payload };
     default:
       return { ...state };
   }

@@ -17,14 +17,14 @@ export default function CurrentTemperature() {
       dispatch(getCurrentTemperature(location.latitude, location.longitude));
     }
   }, [location.latitude]);
-
-  console.log('LOCATION:', location);
-  console.log('TEMPERATURE:', temperature);
   return (
     <div>
       <h1>Current Temperature</h1>
       {location.address ? (
-        <CurrentTemperatureCard location={location} temperature={temperature.current} />
+        <CurrentTemperatureCard
+          location={location}
+          temperature={temperature.current}
+        />
       ) : (
         <p>Waiting for location ...</p>
       )}
