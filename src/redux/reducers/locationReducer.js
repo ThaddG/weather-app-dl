@@ -1,7 +1,7 @@
 const initialState = {
   latitude: '',
   longitude: '',
-  location: '',
+  address: '',
   city: '',
   county: '',
   state: '',
@@ -14,9 +14,10 @@ export const locationReducer = (state = initialState, action) => {
     case 'GET_LOCATION':
       return {
         ...state,
-        location: action.payload.location,
+        address: action.payload.location.formatted_address,
         city: action.payload.city,
         state: action.payload.state,
+        zipcode: action.payload.zipcode,
       };
     default:
       return { ...state };
