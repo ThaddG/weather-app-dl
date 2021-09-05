@@ -14,6 +14,8 @@ export const locationReducer = (state = initialState, action) => {
     case 'GET_LOCATION':
       return {
         ...state,
+        latitude: action.payload.latitude,
+        longitude: action.payload.longitude,
         address: action.payload.location.formatted_address,
         city: action.payload.city,
         state: action.payload.state,

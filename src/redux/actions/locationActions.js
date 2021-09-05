@@ -11,6 +11,8 @@ export const getLocation = () => (dispatch) => {
         (response) => {
           const location = response.results[0];
           const payload = {
+            latitude: String(pos.coords.latitude),
+            longitude: String(pos.coords.longitude),
             location,
             city: location.address_components[3].long_name,
             county: location.address_components[4].long_name,

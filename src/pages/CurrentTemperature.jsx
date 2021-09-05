@@ -4,31 +4,27 @@ import React from 'react';
 import CurrentTemperatureCard from '../components/CurrentTemperatureCard';
 
 // redux
-import { useSelector } from 'react-redux';
-
-// test data
-const testTemp = {
-  weather: {
-    main: 'clear',
-    description: 'clear sky'
-  },
-  main: {
-    temp: 80
-  }
-}
+import { useSelector, useDispatch } from 'react-redux';
+import { getCurrentTemperature } from '../redux/actions/temperatureActions';
 
 export default function CurrentTemperature() {
+  const dispatch = useDispatch();
   const location = useSelector((state) => state.location);
+  const temperature = useSelector((state) => state.temperature);
+
+  React.useEffect(() => {
+    if (location.latitude) {
+      dispatch(getCurrentTemperature(location.latitude, location.longitude));
+    }
+  }, [location.latitude]);
 
   console.log('LOCATION:', location);
+  console.log('TEMPERATURE:', temperature);
   return (
     <div>
       <h1>Current Temperature</h1>
       {location.address ? (
-        <CurrentTemperatureCard
-          location={location}
-          temperature={testTemp}
-        />
+        <CurrentTemperatureCard location={location} temperature={temperature.current} />
       ) : (
         <p>Waiting for location ...</p>
       )}
