@@ -8,8 +8,13 @@ import { useSelector } from 'react-redux';
 
 // test data
 const testTemp = {
-  description: 'some light drizzle',
-  degrees: 80
+  weather: {
+    main: 'clear',
+    description: 'clear sky'
+  },
+  main: {
+    temp: 80
+  }
 }
 
 export default function CurrentTemperature() {

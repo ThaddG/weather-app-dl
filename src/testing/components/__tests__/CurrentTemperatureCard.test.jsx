@@ -8,8 +8,13 @@ const testLocation = {
 };
 
 const testTemperature = {
-  description: 'light intensity drizzle',
-  degrees: 48.92,
+  weather: {
+    main: 'clear',
+    description: 'clear sky'
+  },
+  main: {
+    temp: 80
+  }
 };
 
 describe('CurrentTemperatureCard', () => {
@@ -46,12 +51,12 @@ describe('CurrentTemperatureCard', () => {
   });
 
   it('should display the temperature given through props', () => {
-    const tempText = screen.getByText('48.92');
+    const tempText = screen.getByText(/80/i);
     expect(tempText).toBeInTheDocument();
   });
 
   it('should display the temperature description passed through props', () => {
-    const descriptionText = screen.getByText('light intensity drizzle');
+    const descriptionText = screen.getByText('clear sky');
     expect(descriptionText).toBeInTheDocument();
   })
 });
