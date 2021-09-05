@@ -1,6 +1,7 @@
 import OpenWeatherMapAPI from '../../api/openWeatherMapAPI';
 
 const apiKey = process.env.REACT_APP_OWM_API_KEY;
+const icon = (code) => `http://openweathermap.org/img/wn/${code}@2x.png`;
 
 export const getCurrentTemperature = (lat, lon) => (dispatch) => {
   OpenWeatherMapAPI.get(
@@ -28,44 +29,19 @@ export const getFiveDayTemperature = (lat, lon) => (dispatch) => {
     `/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`
   )
     .then((res) => {
-      console.log('get five day temp response:', res.data);
-      const payload = [
-        {
+      let payload = [];
+      res.data.list.forEach((item) => {
+        let format = {
+          dateTime: item.dt_txt,
           weather: {
-            main: res.data.list[0].weather.main,
-            description: res.data.list[0].weather.description,
+            main: item.weather[0].main,
+            description: item.weather[0].description,
+            icon: icon(item.weather[0].icon)
           },
-          main: { temp: res.data.list[0].main.temp },
-        },
-        {
-          weather: {
-            main: res.data.list[1].weather.main,
-            description: res.data.list[1].weather.description,
-          },
-          main: { temp: res.data.list[1].main.temp },
-        },
-        {
-          weather: {
-            main: res.data.list[2].weather.main,
-            description: res.data.list[2].weather.description,
-          },
-          main: { temp: res.data.list[2].main.temp },
-        },
-        {
-          weather: {
-            main: res.data.list[3].weather.main,
-            description: res.data.list[3].weather.description,
-          },
-          main: { temp: res.data.list[3].main.temp },
-        },
-        {
-          weather: {
-            main: res.data.list[4].weather.main,
-            description: res.data.list[4].weather.description,
-          },
-          main: { temp: res.data.list[4].main.temp },
-        },
-      ];
+          main: { temp: item.main.temp },
+        };
+        payload.push(format);
+      });
       dispatch({ type: 'GET_FIVE_DAY_TEMPERATURE', payload });
     })
     .catch((err) => {

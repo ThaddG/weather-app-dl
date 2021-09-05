@@ -1,0 +1,11 @@
+.forecastCard-container {
+  margin: .5rem 0;
+  padding: .25rem 0;
+}
+
+.grid-item-center-vertical {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: red;
+}

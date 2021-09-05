@@ -20,7 +20,7 @@ export default function CurrentTemperature() {
   return (
     <div>
       <h1>Current Temperature</h1>
-      {location.address ? (
+      {location.latitude && location.longitude ? (
         <CurrentTemperatureCard
           location={location}
           temperature={temperature.current}

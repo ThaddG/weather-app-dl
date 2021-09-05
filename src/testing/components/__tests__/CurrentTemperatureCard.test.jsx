@@ -26,14 +26,6 @@ describe('CurrentTemperatureCard', () => {
       />
     );
   });
-  it('should render', () => {
-    render(
-      <CurrentTemperatureCard
-        location={testLocation}
-        temperature={testTemperature}
-      />
-    );
-  });
 
   it('should display the city passed through props', () => {
     const cityText = screen.getByText(/Detroit/i);
