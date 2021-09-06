@@ -27,7 +27,7 @@ export default function FiveDayTemperature() {
       <h1>5 Day Temperature</h1>
       {temperature.fiveDay.length && temperature.fiveDay.length > 0 ? (
         temperature.fiveDay.map((section, index) => (
-          <Grid container>
+          <Grid container key={index}>
             <Grid item xs={12}>
               <h2 className="five-day-temp-day-text">Day {index + 1}</h2>
               <div className="five-day-temp-day-section-container">
