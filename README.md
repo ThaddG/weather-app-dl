@@ -1,25 +1,14 @@
-# React Web Template
+# Weather App DL
 
-Template created using "yarn create react-app <name>".
+Weather app that displays the current temperature based on the user's location.
 
-## Differences from this template to the default create react app:
-  - Redux (and thunk) added and store already integrated into index.js
-  - Auth reducer example added
-  - Auth actions added with simple formats to follow
-  - webvitals file removed and reference removed in index.js
-  - Depenedencies and DevDependencies organized; testing and types are in the DevDependencies section
-  - Components folder added with Guarded Route component added for guarding routes
-  - Guarded Route example given in App.jsx
+## This app requires you have a Google API Key with the Geocoding API enabled.
 
-## Using Redux in a component
-  Add these imports in the component
-  > import {useSelector, useDispatch} from 'react-redux';
-  ### declaring a reducer
-  > const reducerName = useSelector(state => state.reducerName);
-  ### declaring the dispatch
-  > const dispatch = useDispatch();
-  ### calling an action (I'll use "signout()" as example)
-  > dispatch(signout())
+## Dependencies
+  - Google Geocode API
+  - Axios
+  - JavaScript Location API
+  - Redux
 
 ## Available Scripts
 
