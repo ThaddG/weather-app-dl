@@ -30,7 +30,8 @@ export const getFiveDayTemperature = (lat, lon) => (dispatch) => {
   )
     .then((res) => {
       let payload = [];
-      res.data.list.forEach((item) => {
+      let oneDaySection = []; // this will hold the 8 temps for each five days
+      res.data.list.forEach((item, index) => {
         let format = {
           dateTime: item.dt_txt,
           weather: {
@@ -40,7 +41,14 @@ export const getFiveDayTemperature = (lat, lon) => (dispatch) => {
           },
           main: { temp: item.main.temp },
         };
-        payload.push(format);
+
+        // section off the array items to 5 arrays of 8 items
+        if ((index+1) % 8 === 0) {
+          payload.push(oneDaySection);
+          oneDaySection = [];
+          oneDaySection.push(format);
+        }
+        else oneDaySection.push(format);
       });
       dispatch({ type: 'GET_FIVE_DAY_TEMPERATURE', payload });
     })

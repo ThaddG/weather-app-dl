@@ -1,0 +1,10 @@
+.five-day-temp-day-text {
+  text-align: left;
+  margin-left: .25rem;
+}
+
+.five-day-temp-day-section-container {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  overflow: auto;
+}
